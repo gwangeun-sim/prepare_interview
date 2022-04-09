@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import Banner from './component/Banner'
+import MainPage from './component/MainPage'
+import ChapterPage from './component/ChapterPage';
+import { Layout } from 'antd';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+        <Layout className="layout">
+            <Banner />
+            <Layout.Content className="content">
+                <Routes>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="/:category/:chapter" element={<ChapterPage />} />
+                    {/* <Route path="/network/*" element={<ChapterPage />} />
+                    <Route path="/ds/*" element={<ChapterPage />} /> */}
+                    <Route path="/*" element={<p>Not Found</p>} />
+                </Routes>
+            </Layout.Content>
+        </Layout>
+    </BrowserRouter>
   );
 }
 
